@@ -99,8 +99,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1"
 
     // Hilt: https://developer.android.com/training/dependency-injection/hilt-android
-    implementation "com.google.dagger:hilt-android:2.46.1"
-    kapt "com.google.dagger:hilt-android-compiler:2.46.1"
+    implementation "com.google.dagger:hilt-android:2.47"
+    kapt "com.google.dagger:hilt-android-compiler:2.47"
 
     // Navigation with Hilt: https://developer.android.com/jetpack/compose/libraries#hilt-navigation
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
@@ -131,7 +131,7 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.10.3'
 
     // Robolectric Hilt: https://dagger.dev/hilt/robolectric-testing.html
-    testImplementation "com.google.dagger:hilt-android-testing:2.46.1"
+    testImplementation "com.google.dagger:hilt-android-testing:2.47"
     testImplementation 'androidx.test:core-ktx:1.5.0'
     testImplementation "com.squareup.okhttp3:mockwebserver:4.11.0"
 
@@ -140,5 +140,5 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     androidTestImplementation "com.google.truth:truth:1.1.5"
     androidTestImplementation "androidx.test:runner:1.5.2"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:2.46.1"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:2.47"
 }
