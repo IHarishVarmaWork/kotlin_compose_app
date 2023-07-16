@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.android.dev.engineer.kotlin.compose.R
-import com.android.dev.engineer.kotlin.compose.util.ExcludeFromJacocoGeneratedReport
+import com.android.dev.engineer.kotlin.compose.ui.R
+import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
 
 @Composable
 fun ButtonComposable(

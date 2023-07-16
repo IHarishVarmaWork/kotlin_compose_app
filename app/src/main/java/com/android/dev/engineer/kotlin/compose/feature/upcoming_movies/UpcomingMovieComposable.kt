@@ -18,7 +18,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.android.dev.engineer.kotlin.compose.R
 import com.android.dev.engineer.kotlin.compose.data.domain.local.MovieItem
 
 private const val MOVIE_POSTER_RATIO = 2f / 3f
@@ -33,10 +32,10 @@ fun UpcomingMovieComposable(
         modifier = Modifier
             .aspectRatio(ratio = MOVIE_POSTER_RATIO)
             .clickable { onClickMovie() },
-        backgroundColor = colorResource(id = R.color.grey),
+        backgroundColor = colorResource(id = com.android.dev.engineer.kotlin.compose.ui.R.color.grey),
         border = BorderStroke(
             width = 1.dp,
-            color = colorResource(id = R.color.black)
+            color = colorResource(id = com.android.dev.engineer.kotlin.compose.ui.R.color.black)
         )
     ) {
         Box {
@@ -50,17 +49,17 @@ fun UpcomingMovieComposable(
                     modifier = Modifier
                         .align(alignment = Alignment.TopEnd)
                         .clip(shape = RoundedCornerShape(percent = 15))
-                        .background(color = colorResource(id = R.color.black).copy(alpha = ALPHA_IN_SIXTY_PERCENT))
+                        .background(color = colorResource(id = com.android.dev.engineer.kotlin.compose.ui.R.color.black).copy(alpha = ALPHA_IN_SIXTY_PERCENT))
                         .padding(horizontal = 4.dp),
                     text = movieItem.voteAverage.toString(),
                     fontWeight = FontWeight.Bold,
                     fontSize = MaterialTheme.typography.h6.fontSize,
-                    color = colorResource(id = R.color.white)
+                    color = colorResource(id = com.android.dev.engineer.kotlin.compose.ui.R.color.white)
                 )
             }
             Column(
                 modifier = Modifier
-                    .background(color = colorResource(id = R.color.black).copy(alpha = ALPHA_IN_SIXTY_PERCENT))
+                    .background(color = colorResource(id = com.android.dev.engineer.kotlin.compose.ui.R.color.black).copy(alpha = ALPHA_IN_SIXTY_PERCENT))
                     .padding(all = 4.dp)
                     .align(Alignment.BottomCenter)
             ) {
@@ -68,7 +67,7 @@ fun UpcomingMovieComposable(
                     modifier = Modifier.fillMaxWidth(),
                     text = movieItem.originalTitle,
                     fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.white),
+                    color = colorResource(id = com.android.dev.engineer.kotlin.compose.ui.R.color.white),
                     fontSize = MaterialTheme.typography.body1.fontSize,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -76,7 +75,7 @@ fun UpcomingMovieComposable(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = movieItem.releaseDate,
-                    color = colorResource(id = R.color.white),
+                    color = colorResource(id = com.android.dev.engineer.kotlin.compose.ui.R.color.white),
                     fontSize = MaterialTheme.typography.body2.fontSize
                 )
             }

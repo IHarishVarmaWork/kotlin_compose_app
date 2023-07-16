@@ -11,16 +11,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.test.assert
-import androidx.compose.ui.test.assertCountEquals
-import androidx.compose.ui.test.assertHasClickAction
-import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.hasScrollAction
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.onFirst
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.dp
 import com.android.dev.engineer.kotlin.compose.R
 import com.android.dev.engineer.kotlin.compose.ui.composable.PagerIndicatorComposable
@@ -82,7 +74,7 @@ class PagerIndicatorComposableTest {
     @Test
     fun testSelectedCircleStyle() {
         with(composeTestRule) {
-            val color = Color(color = activity.getColor(R.color.black))
+            val color = Color(color = activity.getColor(com.android.dev.engineer.kotlin.compose.ui.R.color.black))
 
             setContent {
                 KotlinComposeAppTheme {

@@ -30,7 +30,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.android.dev.engineer.kotlin.compose.data.domain.local.MovieItem
 import com.android.dev.engineer.kotlin.compose.ui.composable.ButtonComposable
 import com.android.dev.engineer.kotlin.compose.ui.theme.KotlinComposeAppTheme
-import com.android.dev.engineer.kotlin.compose.util.ExcludeFromJacocoGeneratedReport
+import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
 import kotlinx.coroutines.flow.flowOf
 
 private const val COLUMN_SIZE_IN_PORTRAIT_MODE = 3

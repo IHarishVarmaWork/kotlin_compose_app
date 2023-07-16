@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.dev.engineer.kotlin.compose.ui.theme.KotlinComposeAppTheme
-import com.android.dev.engineer.kotlin.compose.util.ExcludeFromJacocoGeneratedReport
+import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
 
 @Composable
 fun MovieScreen(

@@ -1,0 +1,27 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'app.cash.paparazzi'
+}
+
+android {
+    namespace 'com.android.dev.engineer.kotlin.compose.ui'
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.8'
+    }
+}
+
+dependencies {
+    // Splash screen: https://developer.android.com/develop/ui/views/launch/splash-screen/migrate
+    implementation "androidx.core:core-splashscreen:1.0.1"
+    implementation "androidx.compose.material:material:1.4.3"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+
+    testImplementation "junit:junit:4.13.2"
+}

@@ -19,9 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-
-import com.android.dev.engineer.kotlin.compose.R
-import com.android.dev.engineer.kotlin.compose.util.ExcludeFromJacocoGeneratedReport
+import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
 
 @Composable
 fun PagerIndicatorComposable(
@@ -34,7 +32,7 @@ fun PagerIndicatorComposable(
     onClick: (Int) -> Unit
 ) {
     LazyRow(
-        modifier = modifier.testTag(tag = stringResource(id = R.string.test_tag_pager_indicator))
+        modifier = modifier.testTag(tag = stringResource(id = com.android.dev.engineer.kotlin.compose.ui.R.string.test_tag_pager_indicator))
     ) {
         items(total) { index ->
             Box(
@@ -45,12 +43,12 @@ fun PagerIndicatorComposable(
                     .then(
                         if (index == selectedIndex) {
                             Modifier
-                                .testTag(tag = stringResource(id = R.string.test_tag_pager_indicator_selected))
+                                .testTag(tag = stringResource(id = com.android.dev.engineer.kotlin.compose.ui.R.string.test_tag_pager_indicator_selected))
                                 .clip(shape = CircleShape)
                                 .background(color = color)
                         } else {
                             Modifier
-                                .testTag(tag = stringResource(id = R.string.test_tag_pager_indicator_unselected))
+                                .testTag(tag = stringResource(id = com.android.dev.engineer.kotlin.compose.ui.R.string.test_tag_pager_indicator_unselected))
                                 .border(
                                     border = BorderStroke(
                                         width = 2.dp,

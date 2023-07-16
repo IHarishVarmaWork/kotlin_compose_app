@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.android.dev.engineer.kotlin.compose.data.domain.local.MainNavGraph
 import com.android.dev.engineer.kotlin.compose.ui.composable.ButtonComposable
 import com.android.dev.engineer.kotlin.compose.ui.theme.KotlinComposeAppTheme
-import com.android.dev.engineer.kotlin.compose.util.ExcludeFromJacocoGeneratedReport
+import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
 
 @Composable
 fun SignInScreen(

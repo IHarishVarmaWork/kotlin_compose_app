@@ -5,7 +5,7 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.android.dev.engineer.kotlin.compose.util.ExcludeFromJacocoGeneratedReport
+import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
 
 @Composable
 fun TextButtonComposable(
@@ -17,7 +17,9 @@ fun TextButtonComposable(
         modifier = modifier,
         onClick = onClick
     ) {
-        Text(text = text)
+        Text(
+            text = text
+        )
     }
 }
 
