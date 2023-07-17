@@ -49,10 +49,11 @@
       ]
     },
     {
-      "groupName": "android plugin dependencies",
+      "groupName": "plugin dependencies",
       "matchPackagePatterns": [
         "com.android.library",
-        "com.android.application"
+        "com.android.application",
+        "app.cash.paparazzi"
       ]
     },
     {
