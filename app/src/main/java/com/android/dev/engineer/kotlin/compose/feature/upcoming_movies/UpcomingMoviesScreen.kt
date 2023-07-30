@@ -28,7 +28,8 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.android.dev.engineer.kotlin.compose.data.domain.local.MovieItem
-import com.android.dev.engineer.kotlin.compose.ui.composable.ButtonComposable
+import com.android.dev.engineer.kotlin.compose.data.domain.local.UnifiedError
+import com.android.dev.engineer.kotlin.compose.ui.composable.ErrorComposable
 import com.android.dev.engineer.kotlin.compose.ui.theme.KotlinComposeAppTheme
 import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
 import kotlinx.coroutines.flow.flowOf
@@ -127,10 +128,9 @@ fun UpcomingMoviesScreenComposable(
                             item(
                                 span = { GridItemSpan(currentLineSpan = columnSize) },
                                 content = {
-                                    ButtonComposable(
-                                        modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally),
-                                        text = "Try again",
-                                        onClick = {
+                                    ErrorComposable(
+                                        message = (state.error as UnifiedError).message,
+                                        onRetryClick = {
                                             lazyPagingItems.retry()
                                         }
                                     )
@@ -141,7 +141,7 @@ fun UpcomingMoviesScreenComposable(
                 }
             )
 
-            when (lazyPagingItems.loadState.refresh) {
+            when (val state = lazyPagingItems.loadState.refresh) {
                 is LoadState.Loading -> if (lazyPagingItems.itemCount == 0) {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center)
@@ -154,10 +154,10 @@ fun UpcomingMoviesScreenComposable(
                     )
                 }
                 is LoadState.Error -> if (lazyPagingItems.itemCount == 0) {
-                    ButtonComposable(
-                        modifier = Modifier.align(Alignment.Center),
-                        text = "Try again",
-                        onClick = {
+                    ErrorComposable(
+                        modifier = Modifier.fillMaxSize(),
+                        message = (state.error as UnifiedError).message,
+                        onRetryClick = {
                             lazyPagingItems.retry()
                         }
                     )

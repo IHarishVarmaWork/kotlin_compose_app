@@ -4,18 +4,15 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.android.dev.engineer.kotlin.compose.data.api.TheMovieApi.Companion.DEFAULT_PAGE_SIZE
-import com.android.dev.engineer.kotlin.compose.fake.GetUpcomingMoviesUseCaseFake
+import com.android.dev.engineer.kotlin.compose.data.domain.local.UnifiedError
 import com.android.dev.engineer.kotlin.compose.fake.domain.MovieFake.createUpcomingMovies
+import com.android.dev.engineer.kotlin.compose.fake.use_case.GetUpcomingMoviesUseCaseFake
 import com.android.dev.engineer.kotlin.compose.feature.upcoming_movies.UpcomingMoviesPagingSource
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import okhttp3.internal.EMPTY_RESPONSE
 import org.junit.Before
 import org.junit.Test
-import retrofit2.HttpException
-import retrofit2.Response
-import java.io.IOException
 
 @ExperimentalCoroutinesApi
 class UpcomingMoviesPagingSourceTest {
@@ -97,23 +94,8 @@ class UpcomingMoviesPagingSourceTest {
     }
 
     @Test
-    fun `test fetch page with io exception error`() = runTest {
-        getUpcomingMoviesUseCase.error = IOException()
-
-        val loadResult = upcomingMoviesPagingSource.load(
-            params = PagingSource.LoadParams.Refresh(
-                key = null,
-                loadSize = DEFAULT_PAGE_SIZE,
-                placeholdersEnabled = true
-            )
-        ) as PagingSource.LoadResult.Error
-
-        assertEquals(getUpcomingMoviesUseCase.error, loadResult.throwable)
-    }
-
-    @Test
-    fun `test fetch page with http exception error`() = runTest {
-        getUpcomingMoviesUseCase.error = HttpException(Response.error<String>(500, EMPTY_RESPONSE))
+    fun `test fetch page with unified error`() = runTest {
+        getUpcomingMoviesUseCase.error = UnifiedError.Http.NotFound(message = "Something went wrong")
 
         val loadResult = upcomingMoviesPagingSource.load(
             params = PagingSource.LoadParams.Refresh(

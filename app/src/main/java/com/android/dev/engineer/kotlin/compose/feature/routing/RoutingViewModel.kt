@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalTime::class)
-
 package com.android.dev.engineer.kotlin.compose.feature.routing
 
 import androidx.lifecycle.ViewModel
@@ -14,7 +12,6 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
 @HiltViewModel

@@ -1,5 +1,6 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.jlleitschuh.gradle.ktlint.tasks.GenerateReportsTask
 
 buildscript {
     ext {
@@ -21,6 +22,9 @@ plugins {
     id 'app.cash.paparazzi' version '1.2.0' apply false // Version 1.3.X requires Android Studio 8.X, check the release notes: https://github.com/cashapp/paparazzi/tags
 }
 
+def localProperties = new Properties()
+localProperties.load(project.rootProject.file("local.properties").newDataInputStream())
+
 subprojects {
     apply plugin: 'org.jlleitschuh.gradle.ktlint'
     apply plugin: 'io.gitlab.arturbosch.detekt'
@@ -41,12 +45,6 @@ subprojects {
             }
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_11
-            }
-            // Required for Gradle 8.x updated: : https://docs.gradle.org/current/userguide/upgrading_version_7.html#potential_breaking_changes_2
-            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
-                kotlinOptions {
-                    jvmTarget = JavaVersion.VERSION_11
-                }
             }
 
             testOptions {
@@ -99,9 +97,12 @@ subprojects {
                 }
             }
 
-            rootProject.tasks["sonar"].dependsOn ktlintCheck, tasks["detekt"], tasks["lint"], generateCodeCoverage
-            generateCodeCoverage.mustRunAfter ktlintCheck, tasks["lint"]
-            verifyCodeCoverage.mustRunAfter generateCodeCoverage
+            // Sonar: Upload reports
+            rootProject.tasks.named("sonar").configure {
+                dependsOn generateCodeCoverage, tasks.named("lint"), tasks.named("detekt"), ktlintCheck
+            }
+            generateCodeCoverage.mustRunAfter tasks.named("lint"), ktlintCheck
+            generateCodeCoverage.finalizedBy tasks.named("detekt")
         }
     }
 
@@ -121,8 +122,8 @@ subprojects {
     }
 
     // KtLint reports output directory: https://github.com/JLLeitschuh/ktlint-gradle#setting-reports-output-directory
-    tasks.withType(org.jlleitschuh.gradle.ktlint.tasks.GenerateReportsTask) {
-        reportsOutputDirectory = project.layout.buildDirectory.dir("reports/ktlint/$name")
+    tasks.withType(GenerateReportsTask).configureEach {
+        reportsOutputDirectory.set(project.layout.buildDirectory.dir("reports/ktlint/$name"))
     }
 
     // Detekt options: https://detekt.dev/docs/gettingstarted/gradle#groovy-dsl-3
@@ -159,18 +160,20 @@ subprojects {
     }
 
     // Jacoco test options: https://docs.gradle.org/current/userguide/jacoco_plugin.html#default_values_of_the_jacoco_task_extension
-    tasks.withType(Test) {
-        jacoco {
-            includeNoLocationClasses = true // Robolectric support
-            excludes = ['jdk.internal.*'] // Java compatibility
-        }
-        testLogging {
-            exceptionFormat = TestExceptionFormat.FULL // Display the full log to identify Paparazzi test failures
-            showStackTraces = false
-        }
-        // Paparazzi screenshots Java compatibility: https://docs.gradle.org/current/userguide/toolchains.html#toolchains_for_tasks
-        javaLauncher = javaToolchains.launcherFor {
-            languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_11.toString())
+    tasks.withType(Test).tap {
+        configureEach {
+            jacoco {
+                includeNoLocationClasses = true // Robolectric support
+                excludes = ['jdk.internal.*'] // Java compatibility
+            }
+            testLogging {
+                exceptionFormat = TestExceptionFormat.FULL // Display the full log to identify Paparazzi test failures
+                showStackTraces = false
+            }
+            // Paparazzi screenshots Java compatibility: https://docs.gradle.org/current/userguide/toolchains.html#toolchains_for_tasks
+            javaLauncher = javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_11.toString())
+            }
         }
     }
 }
@@ -186,9 +189,6 @@ tasks.named('wrapper') {
 sonar {
     description = "Sonar properties task"
     androidVariant = "debug"
-
-    def localProperties = new Properties()
-    localProperties.load(project.rootProject.file("local.properties").newDataInputStream())
 
     def ktlintReportPaths = subprojects
             .collect { fileTree("${it.buildDir}/reports/ktlint") }
