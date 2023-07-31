@@ -97,18 +97,16 @@ fun UpcomingMoviesScreenComposable(
                     )
 
                     when (val state = lazyPagingItems.loadState.append) {
-                        is LoadState.Loading -> {
-                            item(
-                                span = { GridItemSpan(currentLineSpan = columnSize) },
-                                content = {
-                                    CircularProgressIndicator(
-                                        modifier = Modifier
-                                            .padding(all = 8.dp)
-                                            .wrapContentWidth(align = Alignment.CenterHorizontally)
-                                    )
-                                }
-                            )
-                        }
+                        is LoadState.Loading -> item(
+                            span = { GridItemSpan(currentLineSpan = columnSize) },
+                            content = {
+                                CircularProgressIndicator(
+                                    modifier = Modifier
+                                        .padding(all = 8.dp)
+                                        .wrapContentWidth(align = Alignment.CenterHorizontally)
+                                )
+                            }
+                        )
                         is LoadState.NotLoading -> if (lazyPagingItems.itemCount > 0 && state.endOfPaginationReached) {
                             item(
                                 span = { GridItemSpan(currentLineSpan = columnSize) },
@@ -124,19 +122,17 @@ fun UpcomingMoviesScreenComposable(
                                 }
                             )
                         }
-                        is LoadState.Error -> {
-                            item(
-                                span = { GridItemSpan(currentLineSpan = columnSize) },
-                                content = {
-                                    ErrorComposable(
-                                        message = (state.error as UnifiedError).message,
-                                        onRetryClick = {
-                                            lazyPagingItems.retry()
-                                        }
-                                    )
-                                }
-                            )
-                        }
+                        is LoadState.Error -> item(
+                            span = { GridItemSpan(currentLineSpan = columnSize) },
+                            content = {
+                                ErrorComposable(
+                                    message = (state.error as UnifiedError).message,
+                                    onRetryClick = {
+                                        lazyPagingItems.retry()
+                                    }
+                                )
+                            }
+                        )
                     }
                 }
             )
