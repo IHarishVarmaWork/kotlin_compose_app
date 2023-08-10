@@ -16,20 +16,20 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.5.1'
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
     }
 }
 
 dependencies {
-    implementation "androidx.compose.material:material:1.4.3"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    implementation "androidx.core:core-splashscreen:1.0.1"
+    implementation libs.splashscreen
+    implementation libs.compose.material
+    implementation libs.compose.tooling.preview
+    debugImplementation libs.compose.tooling
 
-    testImplementation "junit:junit:4.13.2"
+    testImplementation libs.test.junit
 
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
-    androidTestImplementation "androidx.test:runner:1.5.2"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:2.47"
+    androidTestImplementation libs.test.compose.test.junit4
+    debugImplementation libs.test.compose.test.manifest
+    androidTestImplementation libs.test.runner
+    androidTestImplementation libs.test.hilt
 }

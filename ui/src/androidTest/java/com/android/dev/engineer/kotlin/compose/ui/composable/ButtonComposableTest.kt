@@ -8,7 +8,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.dp
-import com.android.dev.engineer.kotlin.compose.ui.R
 import com.android.dev.engineer.kotlin.compose.ui.theme.KotlinComposeAppTheme
 import com.android.dev.engineer.kotlin.compose.ui.utils.assertHasModifier
 import org.junit.Assert.assertEquals
@@ -34,7 +33,7 @@ class ButtonComposableTest {
                     )
                 }
             }
-            onNodeWithTag(testTag = activity.getString(R.string.test_tag_button)).assertTextEquals(TITLE)
+            onNodeWithTag(testTag = activity.getString(com.android.dev.engineer.kotlin.compose.ui.R.string.test_tag_button)).assertTextEquals(TITLE)
         }
     }
 
@@ -51,7 +50,7 @@ class ButtonComposableTest {
                     )
                 }
             }
-            onNodeWithTag(testTag = activity.getString(R.string.test_tag_button))
+            onNodeWithTag(testTag = activity.getString(com.android.dev.engineer.kotlin.compose.ui.R.string.test_tag_button))
                 .fetchSemanticsNode()
                 .assertHasModifier(modifier = modifier)
         }
@@ -70,7 +69,7 @@ class ButtonComposableTest {
                 }
             }
             assertEquals(false, clicked)
-            onNodeWithTag(testTag = activity.getString(R.string.test_tag_button)).performClick()
+            onNodeWithTag(testTag = activity.getString(com.android.dev.engineer.kotlin.compose.ui.R.string.test_tag_button)).performClick()
             assertEquals(true, clicked)
         }
     }

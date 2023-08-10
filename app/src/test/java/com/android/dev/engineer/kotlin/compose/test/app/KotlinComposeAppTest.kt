@@ -1,6 +1,6 @@
 package com.android.dev.engineer.kotlin.compose.test.app
 
-import com.android.dev.engineer.kotlin.compose.app.KotlinComposeApp
+import com.android.dev.engineer.kotlin.compose.app.KotlinComposeAppImpl
 import com.android.dev.engineer.kotlin.compose.data.timber.TimberDebugTree
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
@@ -12,11 +12,11 @@ import timber.log.Timber
 
 @RunWith(RobolectricTestRunner::class)
 class KotlinComposeAppTest {
-    private lateinit var kotlinComposeApp: KotlinComposeApp
+    private lateinit var kotlinComposeApp: KotlinComposeAppImpl
 
     @Before
     fun setUp() {
-        kotlinComposeApp = KotlinComposeApp()
+        kotlinComposeApp = KotlinComposeAppImpl()
     }
 
     @Test

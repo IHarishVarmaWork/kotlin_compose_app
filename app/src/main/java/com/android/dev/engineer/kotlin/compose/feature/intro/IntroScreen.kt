@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package com.android.dev.engineer.kotlin.compose.feature.intro
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -67,6 +65,7 @@ fun IntroScreen(
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun IntroScreenComposable(
     introItems: List<IntroItem>,
