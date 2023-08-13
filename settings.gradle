@@ -16,3 +16,4 @@ rootProject.name = "KotlinComposeApp"
 include ':app'
 include ':data'
 include ':ui'
+include ':feature:upcoming_movies'

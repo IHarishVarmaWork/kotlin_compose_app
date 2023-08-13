@@ -81,3 +81,4 @@ test-runner = { module = "androidx.test:runner", version.ref = "test.runner" } #
 test-compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" } # https://developer.android.com/jetpack/compose/testing#setup
 test-compose-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" } # Coroutines: https://developer.android.com/kotlin/coroutines/test
+test-coil = { module = "io.coil-kt:coil-test", version.ref = "compose-coil" }

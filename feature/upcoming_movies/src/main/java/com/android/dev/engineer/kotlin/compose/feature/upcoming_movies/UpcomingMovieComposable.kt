@@ -17,8 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.android.dev.engineer.kotlin.compose.data.domain.local.MovieItem
+import com.android.dev.engineer.kotlin.compose.ui.composable.AsyncImageComposable
 
 private const val MOVIE_POSTER_RATIO = 2f / 3f
 private const val ALPHA_IN_SIXTY_PERCENT = 0.7f
@@ -39,9 +39,9 @@ fun UpcomingMovieComposable(
         )
     ) {
         Box {
-            AsyncImage(
+            AsyncImageComposable(
                 modifier = Modifier.matchParentSize(),
-                model = movieItem.posterPath,
+                url = movieItem.posterPath,
                 contentDescription = movieItem.originalTitle
             )
             if (movieItem.voteAverage > 0) {
@@ -90,13 +90,9 @@ private fun PreviewMovieItemComposable() {
         movieItem = MovieItem(
             id = 1,
             originalTitle = "Transformers: Rise of the Beasts",
-            overview = "Overview",
-            popularity = 0.661,
             posterPath = "/r16LpvYoE6ADjbG",
             releaseDate = "2022-01-12",
-            title = "Transformers: Rise of the Beasts",
-            voteAverage = 9.0,
-            voteCount = 150
+            voteAverage = 9.0
         ),
         onClickMovie = {}
     )

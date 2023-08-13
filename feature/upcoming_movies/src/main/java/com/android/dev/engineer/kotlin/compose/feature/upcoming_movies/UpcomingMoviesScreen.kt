@@ -32,7 +32,7 @@ import com.android.dev.engineer.kotlin.compose.data.domain.local.UnifiedError
 import com.android.dev.engineer.kotlin.compose.ui.composable.ErrorComposable
 import com.android.dev.engineer.kotlin.compose.ui.theme.KotlinComposeAppTheme
 import com.android.dev.engineer.kotlin.compose.ui.util.ExcludeFromJacocoGeneratedReport
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.MutableStateFlow
 
 private const val COLUMN_SIZE_IN_PORTRAIT_MODE = 3
 private const val COLUMN_SIZE_IN_LANDSCAPE_MODE = 4
@@ -174,8 +174,21 @@ fun UpcomingMoviesScreenComposable(
 @Composable
 @ExcludeFromJacocoGeneratedReport
 private fun PreviewUpcomingMoviesScreenComposable() {
+    val pagingData = MutableStateFlow(
+        PagingData.from(
+            List(size = 15) {
+                MovieItem(
+                    id = it,
+                    originalTitle = "Movie $it",
+                    posterPath = "/r16LpvYoE6ADjbG",
+                    releaseDate = "2022-01-12",
+                    voteAverage = it.toDouble()
+                )
+            }
+        )
+    )
     UpcomingMoviesScreenComposable(
-        lazyPagingItems = flowOf(PagingData.empty<MovieItem>()).collectAsLazyPagingItems(),
+        lazyPagingItems = pagingData.collectAsLazyPagingItems(),
         columnSize = COLUMN_SIZE_IN_PORTRAIT_MODE,
         onClickMovie = {}
     )

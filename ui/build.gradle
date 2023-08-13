@@ -23,6 +23,7 @@ android {
 dependencies {
     implementation libs.splashscreen
     implementation libs.compose.material
+    implementation libs.compose.coil
     implementation libs.compose.tooling.preview
     debugImplementation libs.compose.tooling
 

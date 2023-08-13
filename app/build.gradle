@@ -45,6 +45,7 @@ kapt {
 dependencies {
     implementation project(':data')
     implementation project(':ui')
+    implementation project(':feature:upcoming_movies')
 
     implementation libs.compose.activity
     implementation libs.compose.material

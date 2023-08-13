@@ -1,13 +1,13 @@
-package com.android.dev.engineer.kotlin.compose.test.paging
+package com.android.dev.engineer.kotlin.compose.feature.upcoming_movies.test.paging
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.android.dev.engineer.kotlin.compose.data.api.TheMovieApi.Companion.DEFAULT_PAGE_SIZE
 import com.android.dev.engineer.kotlin.compose.data.domain.local.UnifiedError
-import com.android.dev.engineer.kotlin.compose.fake.domain.MovieFake.createUpcomingMovies
-import com.android.dev.engineer.kotlin.compose.fake.use_case.GetUpcomingMoviesUseCaseFake
 import com.android.dev.engineer.kotlin.compose.feature.upcoming_movies.UpcomingMoviesPagingSource
+import com.android.dev.engineer.kotlin.compose.feature.upcoming_movies.fake.domain.MovieFake.createUpcomingMovies
+import com.android.dev.engineer.kotlin.compose.feature.upcoming_movies.fake.use_case.GetUpcomingMoviesUseCaseFake
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

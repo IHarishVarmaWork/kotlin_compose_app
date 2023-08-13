@@ -7,23 +7,15 @@ import com.android.dev.engineer.kotlin.compose.data.extension.toDateFormatted
 data class MovieItem(
     val id: Int,
     val originalTitle: String,
-    val overview: String,
-    val popularity: Double,
     val posterPath: String,
     val releaseDate: String,
-    val title: String,
-    val voteAverage: Double,
-    val voteCount: Int
+    val voteAverage: Double
 )
 
 fun Movie.toMovieItem() = MovieItem(
     id = id,
     originalTitle = originalTitle,
-    overview = overview,
-    popularity = popularity,
     posterPath = posterPath?.let { IMAGE_URL + it }.orEmpty(),
     releaseDate = releaseDate.toDateFormatted(),
-    title = title,
-    voteAverage = voteAverage,
-    voteCount = voteCount
+    voteAverage = voteAverage
 )
