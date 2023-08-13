@@ -18,31 +18,32 @@ class RoutingViewModelTest {
     @get:Rule
     val mainTestRule: MainTestRule = MainTestRule()
     private lateinit var getInitialRouteUseCase: GetInitialRouteUseCaseFake
-    private lateinit var viewModel: RoutingViewModel
+    private fun createViewModel(): RoutingViewModel {
+        return RoutingViewModel(getInitialRouteUseCase = getInitialRouteUseCase)
+    }
 
     @Before
     fun setUp() {
         getInitialRouteUseCase = GetInitialRouteUseCaseFake()
-        viewModel = RoutingViewModel(getInitialRouteUseCase = getInitialRouteUseCase)
     }
 
     @Test
     fun `test initial navigation as intro`() = runTest {
         val expectedNavGraph = MainNavGraph.Intro
         getInitialRouteUseCase.mainNavGraph = expectedNavGraph
-        assertEquals(expectedNavGraph, viewModel.effect.first())
+        assertEquals(expectedNavGraph, createViewModel().effect.first())
     }
 
     @Test
     fun `test initial navigation as sign in`() = runTest {
         val expectedNavGraph = MainNavGraph.SignIn
         getInitialRouteUseCase.mainNavGraph = expectedNavGraph
-        assertEquals(expectedNavGraph, viewModel.effect.first())
+        assertEquals(expectedNavGraph, createViewModel().effect.first())
     }
 
     @Test
     fun `test when initial navigation fails and redirect to sign in`() = runTest {
         getInitialRouteUseCase.error = IOException()
-        assertEquals(MainNavGraph.SignIn, viewModel.effect.first())
+        assertEquals(MainNavGraph.SignIn, createViewModel().effect.first())
     }
 }

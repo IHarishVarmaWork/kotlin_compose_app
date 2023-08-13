@@ -35,11 +35,10 @@ dependencies {
     implementation libs.paging.runtime
     implementation libs.timber
     implementation libs.lifecycle.viewmodel
-
-    testImplementation libs.test.coroutines
     implementation libs.hilt.android
     kapt libs.hilt.android.compiler
 
+    testImplementation libs.test.coroutines
     testImplementation libs.test.junit
     testImplementation libs.test.coil
 }

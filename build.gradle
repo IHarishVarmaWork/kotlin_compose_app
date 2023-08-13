@@ -107,9 +107,9 @@ subprojects {
         }
     }
 
-    // Ktlint options: https://github.com/JLLeitschuh/ktlint-gradle#configuration
+    // KtLint options: https://github.com/JLLeitschuh/ktlint-gradle#configuration
     ktlint {
-        version = "0.50.0"
+        version = "0.50.0" // KtLint version: https://github.com/pinterest/ktlint/tags
         android = true
         verbose = true
         reporters {
