@@ -1,14 +1,18 @@
 package com.android.dev.engineer.kotlin.compose.data.di
 
+import android.content.Context
 import com.android.dev.engineer.kotlin.compose.data.adapter.CallAdapterFactory
 import com.android.dev.engineer.kotlin.compose.data.api.TheMovieApi
 import com.android.dev.engineer.kotlin.compose.data.api.TheMovieApi.Companion.BASE_API_URL
 import com.android.dev.engineer.kotlin.compose.data.interceptor.ApiKeyInterceptor
 import com.android.dev.engineer.kotlin.compose.data.use_case.api_error_handling.ApiErrorHandlingUseCase
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -42,15 +46,35 @@ object NetworkModule {
         return apiKeyInterceptor
     }
 
+    @ChuckerKey
+    @Singleton
+    @Provides
+    fun provideChuckerInterceptor(
+        @ApplicationContext appContext: Context
+    ): Interceptor {
+        val chuckerCollector = ChuckerCollector(
+            context = appContext,
+            showNotification = true
+        )
+        return ChuckerInterceptor
+            .Builder(context = appContext)
+            .collector(chuckerCollector)
+            .createShortcut(enable = true) // Tap and hold to access app options from home screen
+            .build()
+    }
+
     @Singleton
     @Provides
     fun provideOkHttpClient(
-        @ApiKey apiKeyInterceptor: ApiKeyInterceptor
+        @ApiKey apiKeyInterceptor: Interceptor,
+        @ChuckerKey chuckerInterceptor: Interceptor
     ): OkHttpClient {
-        return OkHttpClient().newBuilder()
+        return OkHttpClient()
+            .newBuilder()
             .connectTimeout(CONNECT_TIMEOUT_SECS, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT_SECS, TimeUnit.SECONDS)
             .addInterceptor(apiKeyInterceptor)
+            .addInterceptor(chuckerInterceptor)
             .build()
     }
 

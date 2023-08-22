@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package com.android.dev.engineer.kotlin.compose.data.test.api
 
 import com.android.dev.engineer.kotlin.compose.data.api.movie.MovieApi
@@ -52,7 +50,7 @@ class TheMovieApiTest {
         val requestUrl = request.requestUrl!!
         val queryParameterNames = requestUrl.queryParameterNames.toList()
 
-        assertEquals("POST", request.method)
+        assertEquals("GET", request.method)
         assertEquals("/movie/upcoming", requestUrl.encodedPath)
         with(queryParameterNames) {
             assertEquals(2, size)

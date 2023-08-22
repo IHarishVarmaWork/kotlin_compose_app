@@ -7,6 +7,7 @@ import com.android.dev.engineer.kotlin.compose.data.di.NetworkModule.provideMosh
 import com.android.dev.engineer.kotlin.compose.data.di.NetworkModule.provideOkHttpClient
 import com.android.dev.engineer.kotlin.compose.data.di.NetworkModule.provideRetrofitBuilder
 import com.android.dev.engineer.kotlin.compose.data.di.NetworkModule.provideTheMovieApi
+import com.android.dev.engineer.kotlin.compose.data.fake.interceptor.ChuckerInterceptorFake
 import com.android.dev.engineer.kotlin.compose.data.interceptor.ApiKeyInterceptor
 import com.android.dev.engineer.kotlin.compose.data.use_case.api_error_handling.ApiErrorHandlingUseCase
 import okhttp3.mockwebserver.MockWebServer
@@ -16,7 +17,10 @@ fun MockWebServer.toTheMovieApi(
 ): TheMovieApi {
     val retrofitBuilder = provideRetrofitBuilder(
         baseUrl = url("").toString(),
-        okHttpClient = provideOkHttpClient(apiKeyInterceptor = ApiKeyInterceptor()),
+        okHttpClient = provideOkHttpClient(
+            apiKeyInterceptor = ApiKeyInterceptor(),
+            chuckerInterceptor = ChuckerInterceptorFake()
+        ),
         moshiConverterFactory = provideMoshiConverterFactory(moshi = provideMoshi()),
         callAdapterFactory = provideCallAdapterFactory(apiErrorHandlingUseCase = apiErrorHandlingUseCase)
     )

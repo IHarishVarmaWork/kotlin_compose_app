@@ -41,6 +41,10 @@ dependencies {
     implementation libs.datastore
     implementation libs.crypto
     implementation libs.timber
+    debugImplementation(libs.chucker) {
+        exclude group: libs.coroutines.get().group
+    }
+    releaseImplementation libs.chucker.no.op
     implementation libs.hilt.android
     kapt libs.hilt.android.compiler
 
