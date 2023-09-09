@@ -2,23 +2,23 @@
 [versions]
 android = "7.4.2"
 androidx-junit = "1.1.5"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 ktlint = "11.5.1"
 detekt = "1.23.1"
-ksp = "1.9.0-1.0.13"
-sonarqube = "4.3.0.3225"
-paparazzi = "1.2.0"
+ksp = "1.9.10-1.0.13"
+sonarqube = "4.3.1.3277"
+paparazzi = "1.2.0" # Version 1.3.X requires Android Studio 8.X, check the release notes: https://github.com/cashapp/paparazzi/tags
 jacoco = "0.8.10"
-gradle = "8.2.1"
+gradle = "8.3"
 compose-activity = "1.7.2"
 compose = "1.4.3"
-compose-compiler = "1.5.0"
-compose-paging = "3.2.0"
+compose-compiler = "1.5.3"
+compose-paging = "3.2.1"
 compose-coil = "2.4.0"
 compose-navigation = "2.6.0"
 compose-hilt-navigation = "1.0.0"
 junit = "4.13.2"
-hilt = "2.47"
+hilt = "2.48"
 core-ktx = "1.5.0"
 mockwebserver = "4.11.0"
 robolectric = "4.10.3"
@@ -26,10 +26,10 @@ test-runner = "1.5.2"
 coroutines = "1.7.3"
 splashscreen = "1.0.1"
 crypto = "1.0.0"
-paging-runtime = "3.2.0"
+paging-runtime = "3.2.1"
 datastore = "1.0.0"
 timber = "5.0.1"
-lifecycle = "2.6.1"
+lifecycle = "2.6.2"
 retrofit = "2.9.0"
 moshi = "1.15.0"
 okhttp = "4.11.0"
@@ -43,7 +43,7 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
-paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" } # Version 1.3.X requires Android Studio 8.X, check the release notes: https://github.com/cashapp/paparazzi/tags
+paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [libraries]

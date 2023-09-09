@@ -13,7 +13,6 @@ android {
         applicationId application_id
         versionCode 1
         versionName version_name
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
