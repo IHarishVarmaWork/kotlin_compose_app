@@ -13,6 +13,10 @@ android {
         compose true
     }
 
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
     }
@@ -41,4 +45,8 @@ dependencies {
     testImplementation libs.test.coroutines
     testImplementation libs.test.junit
     testImplementation libs.test.coil
+
+    androidTestImplementation libs.test.compose.test.junit4
+    debugImplementation libs.test.compose.test.manifest
+    androidTestImplementation libs.test.runner
 }

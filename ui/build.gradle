@@ -8,7 +8,7 @@ android {
     namespace 'com.android.dev.engineer.kotlin.compose.ui'
 
     defaultConfig {
-        testInstrumentationRunner = "com.android.dev.engineer.kotlin.compose.ui.runner.HiltTestRunner" // Hilt Test Runner: https://developer.android.com/training/dependency-injection/hilt-testing#instrumented-tests
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -32,5 +32,4 @@ dependencies {
     androidTestImplementation libs.test.compose.test.junit4
     debugImplementation libs.test.compose.test.manifest
     androidTestImplementation libs.test.runner
-    androidTestImplementation libs.test.hilt
 }

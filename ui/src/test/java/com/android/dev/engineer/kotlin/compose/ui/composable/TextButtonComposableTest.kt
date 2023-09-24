@@ -10,8 +10,10 @@ import org.junit.Test
 class TextButtonComposableTest {
     @get:Rule
     val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.NEXUS_5.copy(softButtons = false),
-        renderingMode = SessionParams.RenderingMode.SHRINK
+        deviceConfig = DeviceConfig(softButtons = false),
+        renderingMode = SessionParams.RenderingMode.SHRINK,
+        showSystemUi = true,
+        validateAccessibility = true
     )
 
     @Test

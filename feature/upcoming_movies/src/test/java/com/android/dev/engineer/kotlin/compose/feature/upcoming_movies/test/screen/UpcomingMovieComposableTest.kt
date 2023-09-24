@@ -28,9 +28,11 @@ private const val MOVIE_POSTER = "https://www.example.com/image.jpg"
 class UpcomingMovieComposableTest {
     @get:Rule
     val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.NEXUS_5.copy(softButtons = false),
+        deviceConfig = DeviceConfig(softButtons = false),
         theme = "android:Theme.Material.Light.NoActionBar",
-        renderingMode = SessionParams.RenderingMode.SHRINK
+        renderingMode = SessionParams.RenderingMode.SHRINK,
+        showSystemUi = false,
+        validateAccessibility = true
     )
 
     @get:Rule

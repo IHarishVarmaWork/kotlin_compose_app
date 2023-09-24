@@ -21,6 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.android.dev.engineer.kotlin.compose.data.domain.local.MainNavGraph
+import com.android.dev.engineer.kotlin.compose.ui.R
 import com.android.dev.engineer.kotlin.compose.ui.composable.ButtonComposable
 import com.android.dev.engineer.kotlin.compose.ui.composable.PagerIndicatorComposable
 import com.android.dev.engineer.kotlin.compose.ui.composable.TextButtonComposable
@@ -72,13 +75,16 @@ private fun IntroScreenComposable(
     onGetStartedAction: () -> Unit
 ) {
     KotlinComposeAppTheme {
-        val pagerState = rememberPagerState()
+        val pagerState = rememberPagerState(
+            pageCount = { introItems.size }
+        )
         val coroutineScope = rememberCoroutineScope()
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .testTag(tag = stringResource(id = R.string.test_tag_intro_screen))
+                .fillMaxSize()
         ) {
             HorizontalPager(
-                pageCount = introItems.size,
                 state = pagerState,
                 pageContent = { pageIndex ->
                     with(introItems[pageIndex]) {

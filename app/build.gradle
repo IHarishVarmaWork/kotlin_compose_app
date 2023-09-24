@@ -13,6 +13,7 @@ android {
         applicationId application_id
         versionCode 1
         versionName version_name
+        testInstrumentationRunner = "com.android.dev.engineer.kotlin.compose.runner.HiltTestRunner"
     }
 
     buildTypes {
@@ -70,4 +71,10 @@ dependencies {
     testImplementation libs.test.core.ktx
     testImplementation libs.test.mockwebserver
     testImplementation libs.test.hilt
+
+    androidTestImplementation libs.test.compose.test.junit4
+    debugImplementation libs.test.compose.test.manifest
+    androidTestImplementation libs.test.runner
+    androidTestImplementation libs.test.hilt
+    kaptAndroidTest libs.hilt.android.compiler
 }

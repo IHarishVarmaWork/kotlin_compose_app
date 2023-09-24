@@ -32,9 +32,11 @@ private val MOVIES = List(size = 15) {
 class UpcomingMoviesScreenComposableTest {
     @get:Rule
     val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.NEXUS_5.copy(softButtons = false),
+        deviceConfig = DeviceConfig(softButtons = false),
         theme = "android:Theme.Material.Light.NoActionBar",
-        renderingMode = SessionParams.RenderingMode.SHRINK
+        renderingMode = SessionParams.RenderingMode.SHRINK,
+        showSystemUi = true,
+        validateAccessibility = true
     )
 
     @get:Rule

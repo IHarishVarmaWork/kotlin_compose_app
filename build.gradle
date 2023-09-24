@@ -38,6 +38,12 @@ subprojects {
                 defaultConfig {
                     minSdk 23
                     targetSdk 33
+
+                    configurations.configureEach {
+                        resolutionStrategy {
+                            force "androidx.emoji2:emoji2:1.3.0" // It's necessary to continue with targetSdk=33 to support compose >= 1.5.1
+                        }
+                    }
                 }
 
                 compileOptions {
